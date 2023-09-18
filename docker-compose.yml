@@ -1,0 +1,59 @@
+version: '2.4'
+services:
+  ChaosMonkey:
+    working_dir: /go/src/chaosmonkeyy
+    privileged: true
+    container_name: chaosmonkey
+    pid: host
+    image: 'chaosmonkey:0.0.1'
+    build:
+      context: chaosmonkey
+    volumes:
+      - 'host-etc:/host-etc'
+      - 'host-dev:/host-dev'
+      - 'host-bin:/host-bin'
+      - 'host-log:/host-log'
+      - './publish/:/publish/'
+      - './cfg-data/:/cfg-data/'
+    mem_limit: 600mb
+    restart: always
+
+  
+
+volumes:
+  host-etc:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /etc
+  host-dev:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /dev
+  host-bin:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /usr/bin
+  host-log:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /var/log
+  host-devicemodel:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /var/run/devicemodel
+  host-proto:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /usr/lib/python3/dist-packages/sime/rt/proto/

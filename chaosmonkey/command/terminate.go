@@ -35,3 +35,21 @@ func Terminate(d deps.Deps, app string, account string, region string, stack str
 		log.Fatalf("FATAL %v\n\nstack trace:\n%+v", err, err)
 	}
 }
+/*func command_Terminate(w http.ResponseWriter, r *http.Request) {
+	mutex.Lock()
+
+	output := ""
+
+	bgSetenv := "/host-bin/bg_setenv -r 0"
+	output += "bg_setenv:\n"
+	if setenv, err := util.Commander(bgSetenv); err != nil {
+		output += "Command failed\n"
+	} else {
+		output += string(setenv) + "\n"
+	}
+
+	//Transfer output to page
+	fmt.Fprintf(w, string(output))
+
+	mutex.Unlock()
+}*/
